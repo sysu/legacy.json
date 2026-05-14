@@ -35,6 +35,8 @@ legacy.json/
 python tools/editor.py
 ```
 
+如果需要使用genpages工具，需要保存 legacy.json 到 git 仓库的根目录，并上传到 github 。
+
 ### 3. 生成网页展示
 
 使用网页生成工具创建展示页面：

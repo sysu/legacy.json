@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>$title</title>
+    <link rel="stylesheet" href="common.css">
+</head>
+<body>
+
+<header id="header">
+    <div class="container-1200">
+        <div class="row">
+            <nav class="block_breadcrumbs" style="width:100%;">
+                <ul>
+                    <li><a href="index.html">大厅</a></li>
+                    <li><span class="block_breadcrumbs-link">$title</span></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="mt-50">
+            <h1>$title</h1>
+        </div>
+    </div>
+</header>
+
+<main id="main" class="content detail">
+    <div id="page-main" class="container">
+        <section class="elements-item">
+            <div class="row">
+
+                <div class="col-side">
+
+                    #if $has_disciplines
+                    <div class="module">
+                        <header class="module-header">
+                            <h2 class="title">主题</h2>
+                        </header>
+                        <div class="module-content">
+                            <ul class="wiki-list">
+                                #for $discipline in $disciplines
+                                <li><span class="tag">$discipline</span></li>
+                                #end for
+                            </ul>
+                        </div>
+                    </div>
+                    #end if
+
+                    #if $has_formal_names
+                    <div class="module">
+                        <header class="module-header">
+                            <h2 class="title">公示名称</h2>
+                        </header>
+                        <div class="module-content">
+                            <ul class="wiki-list">
+                                #for $name in $formal_names
+                                <li><span class="tag">$name</span></li>
+                                #end for
+                            </ul>
+                        </div>
+                    </div>
+                    #end if
+
+                    #if $has_names
+                    <div class="module">
+                        <header class="module-header">
+                            <h2 class="title">内部名称</h2>
+                        </header>
+                        <div class="module-content">
+                            <ul class="wiki-list">
+                                #for $name in $names
+                                <li><span class="tag">$name</span></li>
+                                #end for
+                            </ul>
+                        </div>
+                    </div>
+                    #end if
+
+                    #if $has_update_executor or $has_update_time
+                    <div class="module">
+                        <header class="module-header">
+                            <h2 class="title">更新信息</h2>
+                        </header>
+                        <div class="module-content">
+                            <ul class="wiki-list">
+                                #if $has_update_executor
+                                <li style="margin-bottom:8px;"><p class="meta-line">更新者：<span>$update_executor</span></p></li>
+                                #end if
+                                #if $has_update_time
+                                <li><p class="meta-line">更新时间：<span>$update_time</span></p></li>
+                                #end if
+                            </ul>
+                        </div>
+                    </div>
+                    #end if
+
+                </div>
+
+                <div class="col-main">
+                    <div class="element-item">
+
+                        <p class="atime">
+                            #if $has_available_times
+                            #for $period in $available_times
+                            <span>$period</span>
+                            #end for
+                            #else
+                            <span>（缺失相关的信息）</span>
+                            #end if
+                        </p>
+
+                        <div class="module formal_description">
+                            <div class="module-content">
+                                #if $has_formal_description
+                                <p class="wiki-text" style="margin:0;">$formal_description</p>
+                                #else
+                                <p class="wiki-text" style="margin:0;">（缺失相关的信息）</p>
+                                #end if
+                            </div>
+                        </div>
+
+                        <div class="module">
+                            <header class="element-terms">
+                                <h3 class="title secondary concepts">哈希码</h3>
+                            </header>
+                            <div class="module-content">
+                                #if $has_commit_sha
+                                <p class="wiki-text" style="margin:0;">$commit_sha</p>
+                                #else
+                                <p class="wiki-text" style="margin:0;">（缺失相关的信息）</p>
+                                #end if
+                            </div>
+                        </div>
+
+                        <div class="tabs">
+                            <input type="radio" name="detail-tab" id="tab-planning" checked>
+                            <label class="tab-label" for="tab-planning">规划</label>
+                            <input type="radio" name="detail-tab" id="tab-description">
+                            <label class="tab-label" for="tab-description">描述</label>
+                            <input type="radio" name="detail-tab" id="tab-documentation">
+                            <label class="tab-label" for="tab-documentation">文档资料</label>
+                            <input type="radio" name="detail-tab" id="tab-resources">
+                            <label class="tab-label" for="tab-resources">相关资源</label>
+                            <input type="radio" name="detail-tab" id="tab-influencers">
+                            <label class="tab-label" for="tab-influencers">贡献者</label>
+                            <input type="radio" name="detail-tab" id="tab-extras">
+                            <label class="tab-label" for="tab-extras">附加信息</label>
+                            <div class="tab-panel" id="panel-planning">
+                                <div class="module-content">
+                                    #if $has_planning
+                                    <p class="wiki-text" style="margin:0;">$planning</p>
+                                    #else
+                                    <p class="wiki-text" style="margin:0;">（缺失相关的信息）</p>
+                                    #end if
+                                </div>
+                            </div>
+                            <div class="tab-panel" id="panel-description">
+                                <div class="module-content">
+                                    #if $has_description
+                                    <p class="wiki-text" style="margin:0;">$description</p>
+                                    #else
+                                    <p class="wiki-text" style="margin:0;">（缺失相关的信息）</p>
+                                    #end if
+                                </div>
+                            </div>
+                            <div class="tab-panel" id="panel-documentation">
+                                <div class="module-content">
+                                    #if $has_documentation
+                                    <p class="wiki-text" style="margin:0;">$documentation</p>
+                                    #else
+                                    <p class="wiki-text" style="margin:0;">（缺失相关的信息）</p>
+                                    #end if
+                                </div>
+                            </div>
+                            <div class="tab-panel" id="panel-resources">
+                                <div class="module-content">
+                                    #if $has_resources
+                                    #for $resource in $resources
+                                    <p class="wiki-text" style="margin:0 0 8px 0;">$resource</p>
+                                    #end for
+                                    #else
+                                    <p class="wiki-text" style="margin:0;">（缺失相关的信息）</p>
+                                    #end if
+                                </div>
+                            </div>
+                            <div class="tab-panel" id="panel-influencers">
+                                <div class="module-content">
+                                    #if $has_influencers
+                                    #for $influencer in $influencers
+                                    <p class="wiki-text" style="margin:0 0 8px 0;">$influencer</p>
+                                    #end for
+                                    #else
+                                    <p class="wiki-text" style="margin:0;">（缺失相关的信息）</p>
+                                    #end if
+                                </div>
+                            </div>
+                            <div class="tab-panel" id="panel-extras">
+                                <div class="module-content">
+                                    #if $has_extras
+                                    #for $extra in $extras
+                                    <p class="wiki-text" style="margin:0 0 8px 0;">$extra</p>
+                                    #end for
+                                    #else
+                                    <p class="wiki-text" style="margin:0;">（缺失相关的信息）</p>
+                                    #end if
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="module">
+                            <header class="element-terms">
+                                <h3 class="title secondary concepts">里程碑</h3>
+                            </header>
+                            <div class="module-content">
+                                #if $has_milestones
+                                <ul class="timeline">
+                                    #for $milestone in $milestones
+                                    <li>$milestone</li>
+                                    #end for
+                                </ul>
+                                #else
+                                <p class="wiki-text" style="margin:0;">（缺失相关的信息）</p>
+                                #end if
+                            </div>
+                        </div>
+
+                        <div class="module">
+                            <header class="element-terms">
+                                <h3 class="title secondary concepts">后继项目</h3>
+                            </header>
+                            <div class="module-content">
+                                #if $has_subsequents
+                                #for $subsequent in $subsequents
+                                <p class="wiki-text" style="margin:0 0 8px 0;">$subsequent</p>
+                                #end for
+                                #else
+                                <p class="wiki-text" style="margin:0;">（缺失相关的信息）</p>
+                                #end if
+                            </div>
+                        </div>
+
+                        <div class="module">
+                            <header class="element-terms">
+                                <h3 class="title secondary concepts">标识</h3>
+                            </header>
+                            <ol class="module-content terms">
+                                <li class="wrap no-border">
+                                    #if $has_id
+                                    <span class="wiki-text">$id</span>
+                                    #else
+                                    <span class="wiki-text">（缺失相关的信息）</span>
+                                    #end if
+                                </li>
+                            </ol>
+                        </div>
+
+                        <div class="module">
+                            <header class="element-terms">
+                                <h3 class="title secondary concepts">在线仓库</h3>
+                            </header>
+                            <div class="module-content">
+                                #if $git_url
+                                <p class="wiki-text" style="margin:0;"><a href="$git_url" target="_blank" class="link">$git_url</a></p>
+                                #else
+                                <p class="wiki-text" style="margin:0;">（缺失相关的信息）</p>
+                                #end if
+                            </div>
+                        </div>
+                        
+                        <div class="module">
+                            <header class="element-terms">
+                                <h3 class="title secondary concepts">关键词</h3>
+                            </header>
+                            <ol class="module-content terms">
+                                #if $has_keywords
+                                #for $keyword in $keywords
+                                <li class="wrap no-border">
+                                    <span class="related-theme">$keyword</span>
+                                </li>
+                                #end for
+                                #else
+                                <li class="wrap no-border">
+                                    <span class="related-theme">（缺失相关的信息）</span>
+                                </li>
+                                #end if
+                            </ol>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer id="footer" class="mt-64">
+    <div class="container">
+        此页面由 legacy.json 文件生成。
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>浏览全部</title>
+    <link rel="stylesheet" href="common.css">
+</head>
+<body class="index">
+    <div class="container">
+        <div class="mt-50">
+            <h1>浏览全部</h1>
+        </div>
+    </div>
+
+    <main id="main">
+        <div class="container">
+            <p class="wiki-text">
+                <a href="https://github.com/sysu/legacy.json/">legacy.json</a> 规范提供了一种标准化的方式来记录历史项目，这是为了加速成长、激发创造力、为未来赋能。
+                点击下方列出的条目，即可查看详细记录。
+            </p>
+            <p class="wiki-text" style="font-size: 1.4rem; color: #58595b;">
+                共 <span class="form_result_count">$len($projects)</span> 个项目
+            </p>
+
+            <table class="table_design">
+                <thead>
+                    <tr>
+                        <th colspan="3"><h2>全部项目</h2></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    #for $project in $projects
+                    <tr>
+                        <td class="list-element" width="35%">
+                            <a class="link" href="$project.detail_url">$project.formal_name</a>
+                        </td>
+                        <td class="list-element" width="55%">
+                            #if $project.disciplines
+                                #for $discipline in $project.disciplines
+                                <span class="index-tag">$discipline</span>
+                                #end for
+                            #else
+                                <span class="index-tag missing">&mdash;</span>
+                            #end if
+                        </td>
+                        <td class="list-element" width="10%" align="center">
+                            <a class="link" href="$project.detail_url">详情 &rarr;</a>
+                        </td>
+                    </tr>
+                    #end for
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            此页面由 legacy.json 文件生成。
+        </div>
+    </footer>
+</body>
+</html>
